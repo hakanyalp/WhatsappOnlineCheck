@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from datetime import datetime
+from playsound import playsound
+
 import time
 
 def WriteToFile(text):
@@ -65,10 +67,10 @@ while 1:
         name = ""
         onlineTime = 0
         try:
-            driver.find_element_by_xpath('/html/body/div[1]/div/div/div[3]/div/div[2]/div[1]/div/div/div[1]/div/div/div[2]').click()
-            name = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/header/div[2]/div[1]/div/span").text
+            driver.find_element_by_xpath('//*[@id="pane-side"]/div[1]/div/div/div[11]/div/div/div[2]/div[1]').click()
+            name = driver.find_element_by_xpath('//*[@id="pane-side"]/div[1]/div/div/div[11]/div/div/div[2]/div[1]/div[1]/span/span').text
             try:
-                status = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/header/div[2]/div[2]/span").text
+                status = driver.find_element_by_xpath('//*[@id="main"]/header/div[2]/div[2]/span').text
             except:
                 pass
                 # print("ERROR 2")
@@ -77,6 +79,7 @@ while 1:
 
         if (status == "çevrimiçi"):
             if (not onlineCheck):
+                playsound('end.wav')
                 d1 = datetime.now()
                 d1_ts = time.mktime(d1.timetuple())
             onlineCheck = True
